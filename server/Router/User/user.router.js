@@ -96,7 +96,6 @@ router.post('/login', (req, res) => {
     })
 })
 
-
 //Update profile picture
 router.post('/profile_picture', jsonParser, (req, res)=> {
     const storage = multer.diskStorage({
