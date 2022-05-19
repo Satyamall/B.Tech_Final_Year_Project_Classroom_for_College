@@ -13,7 +13,7 @@ const Home = () => {
             iLearn is an app for teachers and students that facilitates online education. iLearn is an online teaching and learning environment where teachers and students can present course materials, engage and interact with other members of the iLearn, and work in groups together. This app is totally build using MERN(MongoDB Express.js React.js Node.js) Stack. We are using Material UI for better user experience.
             </p>
         </div>
-        <h1 style={{ textAlign: "center", margin: "50px"}}> iLearn CREATORS : </h1>
+        <h1 style={{ textAlign: "center", margin: "50px"}}> iLearn Team : </h1>
         <div style={{display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap:"10rem", padding: "10px"}}>
                 <div style={{width: "200px"}}>
                   <img src={Anurag_Sir} alt="Dr. Anurag Sewak" width="180px" height="180px" style={{ borderRadius: "50%"}}/>
