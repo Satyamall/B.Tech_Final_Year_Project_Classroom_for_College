@@ -39,7 +39,7 @@ body{
 .text-link:hover{
 	opacity: .4;
 }
-.container {
+.container{
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
@@ -47,7 +47,7 @@ body{
 	text-align: center;
 }
 .container-fluid {
-  	width: 100%;
+	width: 100%;
 }
 [class*="col-"] {
   float: left;
@@ -135,7 +135,9 @@ body[theme="light"]{
 	padding: 10px;
 	border: 1px solid #999;
 	border-radius: 5px;
-	width: -webkit-fill-available;
+	width: 60%;
+	margin: auto;
+	margin-top: 20px;
 }
 
 .box-image img, .box-image{

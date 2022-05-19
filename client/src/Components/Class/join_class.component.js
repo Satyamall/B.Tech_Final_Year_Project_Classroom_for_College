@@ -39,7 +39,7 @@ const JoinClass = () => {
         e.preventDefault();
         if(createError === ""){
             Axios.post(`${URL}/class/create`, {title: inputTitle, description: inputDescription, token, owner: userInfo._id})
-            .then(res => window.location = `/class/${res.data.classId}`)
+            .then(res => window.location = `/${res.data.classId}`)
             .catch(() => setJoinError("Something went wrong."))
         }
     }
@@ -48,7 +48,7 @@ const JoinClass = () => {
         e.preventDefault();
         if(joinError === ""){
             Axios.post(`${URL}/class/students/register`, {token: token, _class: inputCode, student: userInfo._id})
-            .then(res => window.location = `/class/${res.data.classId}`)
+            .then(res => window.location = `/${res.data.classId}`)
             .catch(() => setCreateError("Something went wrong."))
         }
     }

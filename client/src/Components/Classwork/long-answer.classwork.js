@@ -42,7 +42,7 @@ const LongAnswer = (params) => {
                 setInputTitle(res.data.title);
                 setInputDescription(res.data.description);
                 if(res.data.duedate) setInputDeadline(res.data.duedate.substr(0, 16));
-            }else window.location = `/class/${classId}`
+            }else window.location = `/${classId}`
         })
         
     }, [classworkId, classId])
@@ -78,7 +78,7 @@ const LongAnswer = (params) => {
         if(window.confirm("Are you sure?")){
             const token = new Cookies().get('token');
             Axios.post(`${URL}/classwork/delete/${classwork._id}`, {author: userInfo._id, token})
-            .then(() => window.location = `/class/${classId}`)
+            .then(() => window.location = `/${classId}`)
         }
     }
 

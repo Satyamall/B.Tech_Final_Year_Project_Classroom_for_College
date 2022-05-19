@@ -55,13 +55,13 @@ const ClassNavbar = ({classInfo}) => {
                     <NavLink to="/" className="sidenav-title">Classes</NavLink>
                     {classes.map(_class => {
                         if(!_class.archived && !userInfo.archived_class.includes(_class._id)){
-                            return <NavLink to = {`/class/${_class._id}`} key={_class._id} className="sidenav-item">{_class.title}</NavLink>
+                            return <NavLink to = {`/${_class._id}`} key={_class._id} className="sidenav-item">{_class.title}</NavLink>
                         }else return null;
                     })}
                     <NavLink to = "/archived" className="sidenav-title">Archived Class</NavLink>
                 </div>
                 <span className="nav-logo  nav-ham" onClick = {openNav}>☰</span>
-                <p className="nav-logo nav-ham nav-class-title" onClick = {() => window.location = `/class/${classInfo._id}`}>{classInfo.title}</p>
+                <p className="nav-logo nav-ham nav-class-title" onClick = {() => window.location = `/${classInfo._id}`}>{classInfo.title}</p>
                 {Profile === null
                 ?<img src = {DefaultProfile} alt="Default Profile Logo" className="nav-right pp nav-ham" onClick = {() => window.location = "/profile"}></img>
                 :<img src = {Profile} alt="Profile Logo" className="nav-right pp nav-ham" onClick = {() => window.location = "/profile"}></img>
@@ -69,15 +69,15 @@ const ClassNavbar = ({classInfo}) => {
             </nav>
             {Object.keys(classInfo).length > 0 && classInfo.owner === userInfo._id?
                 <nav className="center bg-white text-dark topnav">
-                    <p className="col-3 option nav-ham"><NavLink to = {`/class/${classInfo._id}`} className=" link">Stream</NavLink></p>
-                    <p className="col-3 option nav-ham"><NavLink to = {`/class/${classInfo._id}/classwork`} className="link">Classwork</NavLink></p>
-                    <p className="col-3 option nav-ham"><NavLink to = {`/class/${classInfo._id}/people`} className="link">People</NavLink></p>
-                    <p className="col-3 option nav-ham"><NavLink to = {`/class/${classInfo._id}/setting`} className ="link">Setting</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}`} className=" link">Stream</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/classwork`} className="link">Classwork</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/people`} className="link">People</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/setting`} className ="link">Setting</NavLink></p>
                 </nav>
             : <nav className="center bg-white text-dark topnav">
-                <p className="col-4 nav-ham optc"><NavLink to = {`/class/${classInfo._id}`} className=" link">Stream</NavLink></p>
-                <p className="col-4 nav-ham optc"><NavLink to = {`/class/${classInfo._id}/classwork`} className="link">Classwork</NavLink></p>
-                <p className="col-4 nav-ham optc"><NavLink to = {`/class/${classInfo._id}/people`} className="link">People</NavLink></p>
+                <p className="col-4 nav-ham optc"><NavLink to = {`/${classInfo._id}`} className=" link">Stream</NavLink></p>
+                <p className="col-4 nav-ham optc"><NavLink to = {`/${classInfo._id}/classwork`} className="link">Classwork</NavLink></p>
+                <p className="col-4 nav-ham optc"><NavLink to = {`/${classInfo._id}/people`} className="link">People</NavLink></p>
             </nav>}
         </nav>
     )
