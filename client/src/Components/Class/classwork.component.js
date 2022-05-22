@@ -42,7 +42,7 @@ const Classwork = (params) => {
 
     useEffect(() => {
         const classId = params.match.params.classId;
-        Axios.get(`${URL}/get/class/${classId}`)
+        Axios.get(`${URL}/class/get/class/${classId}`)
         .then(res => setClassInfo(() => res.data))
     }, [params.match.params.classId])
 
