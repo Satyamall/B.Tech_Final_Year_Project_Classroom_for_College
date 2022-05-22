@@ -36,6 +36,10 @@ const ClassworkSchema = new Schema({
     options: {
         type: Array,
         required: false
+    },
+    fileUrl: {
+        type: String,
+        require: false
     }
 }, {
     timestamps: true

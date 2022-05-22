@@ -11,6 +11,7 @@ require('dotenv').config();
 //Create server for socket.io
 const app = express();
 const server = http.createServer(app);
+const bodyParser = require("body-parser");
 
 app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL)
@@ -20,10 +21,12 @@ app.use((req, res, next) => {
 	next();
 })
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({ limit: '30mb', extended: true }))
+app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public/")));
-
 
 //including routers
 const userRouter = require('./Router/User/user.router');
