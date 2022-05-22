@@ -55,11 +55,11 @@ const Class = (params) => {
                 {Object.size(authorInfo) > 0? classworks.map(classwork => {
                     if(authorInfo[classwork.author]){
                     return <div className="margin-top-bottom box box-shadow classwork" key = {classwork._id} onClick = {() => {
-                        if(classwork.types === "material") window.location = `/class/${classInfo._id}/m/${classwork._id}`
-                        else if(classwork.types === "short answer") window.location = `/class/${classInfo._id}/sa/${classwork._id}`
-                        else if(classwork.types === "long answer") window.location = `/class/${classInfo._id}/la/${classwork._id}`
-                        else if(classwork.types === "multiple choice") window.location = `/class/${classInfo._id}/mc/${classwork._id}`
-                        else if(classwork.types === "checkbox") window.location = `/class/${classInfo._id}/c/${classwork._id}`
+                        if(classwork.types === "material") window.location = `/${classInfo._id}/m/${classwork._id}`
+                        else if(classwork.types === "short answer") window.location = `/${classInfo._id}/sa/${classwork._id}`
+                        else if(classwork.types === "long answer") window.location = `/${classInfo._id}/la/${classwork._id}`
+                        else if(classwork.types === "multiple choice") window.location = `/${classInfo._id}/mc/${classwork._id}`
+                        else if(classwork.types === "checkbox") window.location = `/${classInfo._id}/c/${classwork._id}`
                         }}>
                         <h3 className="classwork-title">
                         {authorInfo[classwork.author].profile_picture?

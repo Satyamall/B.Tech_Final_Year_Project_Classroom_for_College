@@ -27,9 +27,9 @@ const Material = (params) => {
                     setMaterial(() => res.data);
                     setInputTitle(res.data.title);
                     setInputDescription(res.data.description);
-                }else window.location = `/class/${classId}`
+                }else window.location = `/${classId}`
             })
-            .catch(() => window.location = `/class/${classId}`)
+            .catch(() => window.location = `/${classId}`)
         })
         const token = new Cookies().get('token');
         UserInfo(token)
@@ -68,7 +68,7 @@ const Material = (params) => {
         if(window.confirm("Are you sure?")){
             const token = new Cookies().get('token');
             Axios.post(`${URL}/classwork/delete/${material._id}`, {author: userInfo._id, token})
-            .then(() => window.location = `/class/${classId}`)
+            .then(() => window.location = `/${classId}`)
         }
     }
 

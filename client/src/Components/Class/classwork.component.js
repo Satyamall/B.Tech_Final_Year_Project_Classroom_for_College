@@ -83,11 +83,11 @@ const Classwork = (params) => {
             author: userInfo._id, duedate: inputDeadline, token: userInfo.token, options: inputChoices
         })
         .then(result => {
-            if(inputType === "material") window.location = `/class/${ClassInfo._id}/m/${result.data.id}`
-            else if(inputType === "short answer") window.location = `/class/${ClassInfo._id}/sa/${result.data.id}`
-            else if(inputType === "long answer") window.location = `/class/${ClassInfo._id}/la/${result.data.id}`
-            else if(inputType === "multiple choice") window.location = `/class/${ClassInfo._id}/mc/${result.data.id}`
-            else if(inputType === "checkbox") window.location = `/class/${ClassInfo._id}/c/${result.data.id}`
+            if(inputType === "material") window.location = `/${ClassInfo._id}/m/${result.data.id}`
+            else if(inputType === "short answer") window.location = `/${ClassInfo._id}/sa/${result.data.id}`
+            else if(inputType === "long answer") window.location = `/${ClassInfo._id}/la/${result.data.id}`
+            else if(inputType === "multiple choice") window.location = `/${ClassInfo._id}/mc/${result.data.id}`
+            else if(inputType === "checkbox") window.location = `/${ClassInfo._id}/c/${result.data.id}`
         })
     }
 
@@ -101,10 +101,10 @@ const Classwork = (params) => {
                 {Object.size(authorInfo) > 0? classworks.map(classwork => {
                     if(classwork.types !== "material" && authorInfo[classwork.author]){
                     return <div className="box box-shadow classwork" key = {classwork._id} onClick = {() => {
-                        if(classwork.types === "short answer") window.location = `/class/${ClassInfo._id}/sa/${classwork._id}`;
-                        else if(classwork.types === "long answer") window.location = `/class/${ClassInfo._id}/la/${classwork._id}`;
-                        else if(classwork.types === "multiple choice") window.location = `/class/${ClassInfo._id}/mc/${classwork._id}`
-                        else if(classwork.types === "checkbox") window.location = `/class/${ClassInfo._id}/c/${classwork._id}`
+                        if(classwork.types === "short answer") window.location = `/${ClassInfo._id}/sa/${classwork._id}`;
+                        else if(classwork.types === "long answer") window.location = `/${ClassInfo._id}/la/${classwork._id}`;
+                        else if(classwork.types === "multiple choice") window.location = `/${ClassInfo._id}/mc/${classwork._id}`
+                        else if(classwork.types === "checkbox") window.location = `/${ClassInfo._id}/c/${classwork._id}`
                         }}>
                         <h3 className="classwork-title">
                         {authorInfo[classwork.author].profile_picture?
