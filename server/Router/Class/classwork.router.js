@@ -6,9 +6,10 @@ const User = require('../../models/user.model');
 const Class = require('../../models/class.model');
 const Classwork = require('../../models/classwork.model');
 const {nanoid} = require('nanoid');
+// const uploadFile = require("../../middleware/multer");
 
-router.post('/create', jsonParser, (req, res) => {
-    const {title, description, _class, type, author, duedate, token, options}  = req.body;
+router.post('/create',jsonParser, (req, res) => {
+    const {title, description, _class, type, author, duedate, token, options,fileUrl}  = req.body;
     User.findOne({_id: author, token}, (err, user) => {
         if(err) res.status(500).json("Something went wrong.")
         else if (!user) res.status(404).json("Author not found.")
@@ -17,7 +18,7 @@ router.post('/create', jsonParser, (req, res) => {
                 if(err) res.status(500).json("Something went wrong.")
                 else if(!__class) res.status(404).json("Class not found.")
                 else{
-                    const newClasswork = new Classwork({title, description, class: _class, types: type, duedate, options, author})
+                    const newClasswork = new Classwork({title, description, class: _class, types: type, duedate, options, author,fileUrl})
                     newClasswork.save()
                     .then(() => res.json({message: "Classwork created.", id: newClasswork._id}))
                     .catch(err => res.status(400).json("Error: "+err))
@@ -50,8 +51,8 @@ router.get('/get/:classwork', jsonParser, (req, res) => {
     .catch(() => res.status(404).json("Classwork not found."))
 })
 
-router.post('/update/:id', jsonParser, (req, res) => {
-    const {title, description, duedate, type, options, token}  = req.body;
+router.post('/update/:id',jsonParser, (req, res) => {
+    const {title, description, duedate, type, options,token,fileUrl}  = req.body;
     const id = req.params.id;
     Classwork.findById(id, (err, classwork) => {
         if(err) res.status(500).json("Something went wrong.")
@@ -66,6 +67,7 @@ router.post('/update/:id', jsonParser, (req, res) => {
                     classwork.duedate = duedate;
                     classwork.type = type;
                     classwork.options = options;
+                    classwork.fileUrl = fileUrl;
                     classwork.save()
                     .then(() => res.json({message:"Success", classwork}))
                     .catch(err => res.status(400).json("Error: "+err));
