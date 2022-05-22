@@ -34,6 +34,7 @@ const Classwork = (params) => {
     const [inputDeadline, setInputDealine] = useState('');
     const [inputChoices, setChoices] = useState([]);
     const [inputNewChoices, setInputNewChoices] = useState('');
+    const [inputFile, setInputFile] = useState('');
 
     useEffect(() => {
         const token = new Cookies().get('token');
@@ -42,7 +43,7 @@ const Classwork = (params) => {
 
     useEffect(() => {
         const classId = params.match.params.classId;
-        Axios.get(`${URL}/get/class/${classId}`)
+        Axios.get(`${URL}/class/get/class/${classId}`)
         .then(res => setClassInfo(() => res.data))
     }, [params.match.params.classId])
 
@@ -80,7 +81,7 @@ const Classwork = (params) => {
         e.preventDefault();
         Axios.post(`${URL}/classwork/create`, {
             title: inputTitle, description: inputDescription, _class: ClassInfo._id, type: inputType, 
-            author: userInfo._id, duedate: inputDeadline, token: userInfo.token, options: inputChoices
+            author: userInfo._id, duedate: inputDeadline, token: userInfo.token, options: inputChoices, filePath: inputFile
         })
         .then(result => {
             if(inputType === "material") window.location = `/${ClassInfo._id}/m/${result.data.id}`
@@ -164,6 +165,11 @@ const Classwork = (params) => {
                             </div>
                         </div>
                         :null}
+                        {inputType === "material" || inputType === "short answer" || inputType==='long answer'?
+                        <div className="form-group">
+                            <p className="form-label">File Upload (optional):</p>
+                            <input type = "file" className="form-control" value={inputFile} onChange = {({target: {value}}) => setInputFile(value)} />
+                        </div>:null}
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
                         </div>

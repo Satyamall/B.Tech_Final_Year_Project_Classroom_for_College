@@ -122,6 +122,7 @@ body[theme="light"]{
 	font-size: 1rem;
 	color: black;
 	font-family: "Poppins";
+	cursor: pointer;
 }
 .btn-hover:hover{
 	box-shadow: 5px 2px 8px;
@@ -138,6 +139,7 @@ body[theme="light"]{
 	width: 60%;
 	margin: auto;
 	margin-top: 20px;
+	background-color: white;
 }
 
 .box-image img, .box-image{

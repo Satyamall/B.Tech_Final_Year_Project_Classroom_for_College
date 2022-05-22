@@ -14,10 +14,12 @@ const LongAnswer = (params) => {
     const [userInfo, setUserInfo] = useState('');
     const [inputTitle, setInputTitle] = useState('');
     const [inputDescription, setInputDescription] = useState('');
-    const [inputAnswer, setInputAnswer] = useState('');
     const [inputDeadline, setInputDeadline] = useState('');
+    const [inputFile, setInputFile] = useState('');
     const [author, setAuthor] = useState('');
+    const [inputAnswer, setInputAnswer] = useState('');
     const [answers, setAnswers] = useState([]);
+    const [answerFile, setAnswerFile] = useState("");
     const classId = params.match.params.classId;
     const classworkId = params.match.params.classworkId;
     const classworkModal = document.getElementById("classwork");
@@ -41,6 +43,7 @@ const LongAnswer = (params) => {
                 setClasswork(() => res.data);
                 setInputTitle(res.data.title);
                 setInputDescription(res.data.description);
+                setInputFile(res.data.fileUrl)
                 if(res.data.duedate) setInputDeadline(res.data.duedate.substr(0, 16));
             }else window.location = `/${classId}`
         })
@@ -85,7 +88,7 @@ const LongAnswer = (params) => {
     const updateClasswork = e => {
         e.preventDefault();
         const token = new Cookies().get('token');
-        Axios.post(`${URL}/classwork/update/${classwork._id}`, {title: inputTitle, description: inputDescription, duedate: inputDeadline, token})
+        Axios.post(`${URL}/classwork/update/${classwork._id}`, {title: inputTitle, description: inputDescription, duedate: inputDeadline, fileUrl: inputFile,token})
         .then(res => {
             setClasswork(res.data.classwork);
             classworkModal.style.display = "none";
@@ -96,7 +99,7 @@ const LongAnswer = (params) => {
         e.preventDefault();
         const token = new Cookies().get('token');
         if(!answered){
-            Axios.post(`${URL}/classwork/submit/answer`, {token, classwork: classwork._id, answer: inputAnswer, student: userInfo._id})
+            Axios.post(`${URL}/classwork/submit/answer`, {token, classwork: classwork._id, answer: inputAnswer, answerFile: answerFile,student: userInfo._id})
             .then(res => setAnswers(res.data.answers))
         }
     }
@@ -112,6 +115,7 @@ const LongAnswer = (params) => {
                     <h1 className="box-title">{classwork.title}</h1>
                     {classwork.duedate?<p>Due: {moment(classwork.duedate).fromNow()}</p>:null}
                     <p className="box-text material-description">{classwork.description}</p>
+                    {classwork.fileUrl? <a href={classwork.fileUrl}>Open File</a>: null}
                     <p>posted {moment(classwork.createdAt).fromNow()} 
                     {classwork.createdAt !== classwork.updatedAt? <span>(updated {moment(classwork.updatedAt).fromNow()})</span>: null} by {author}</p>
                     {classwork.author === userInfo._id? <div><h3><span className="link" onClick = {openClasswork}>Edit</span></h3>
@@ -124,6 +128,10 @@ const LongAnswer = (params) => {
                         <h1 className="box-title">Your answer:</h1>
                         <div className="form-group">
                             <textarea rows="5" className="form-control" value={inputAnswer} onChange = {({target: {value}}) => setInputAnswer(value)} />
+                        </div>
+                        <div className="form-group">
+                            <p className="form-label">File Upload (optional):</p>
+                            <input type = "file" className="form-control" value={answerFile} onChange = {({target: {value}}) => setAnswerFile(value)} />
                         </div>
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
@@ -162,6 +170,10 @@ const LongAnswer = (params) => {
                             min={new Date().toJSON().substr(0, 16)} />
                         </div>
                         <div className="form-group">
+                            <p className="form-label">File Upload (optional):</p>
+                            <input type = "file" className="form-control" value={inputFile} onChange = {({target: {value}}) => setInputFile(value)} />
+                        </div>
+                        <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
                         </div>
                     </form>
@@ -173,7 +185,7 @@ const LongAnswer = (params) => {
                     <span className="classwork-close" onClick = {closeAnswer}>&times;</span>
                     <h1 className="box-title">Answers by students:</h1>
                     {answers.map(answer => {
-                        return <p key = {answer._id}>{answer.student.username} answered <b>{answer.answer}</b> {moment(answer.answeredOn).fromNow()}
+                        return <p key = {answer._id}>{answer.student.username} answered <b>{answer.answer}</b> {answer.answerFile ? <a href={answer.answerFile}>Open File</a>: null} {moment(answer.answeredOn).fromNow()}
                         {answer.answeredOn > classwork.duedate? <span><b> (Turned in late)</b></span>:null}</p>
                     })}
                 </div>

@@ -14,6 +14,7 @@ const Material = (params) => {
     const [userInfo, setUserInfo] = useState({});
     const [inputTitle, setInputTitle] = useState('');
     const [inputDescription, setInputDescription] = useState('');
+    const [inputFile, setInputFile] = useState('');
     const classId = params.match.params.classId;
     const materialId = params.match.params.materialId;
     
@@ -27,6 +28,7 @@ const Material = (params) => {
                     setMaterial(() => res.data);
                     setInputTitle(res.data.title);
                     setInputDescription(res.data.description);
+                    setInputFile(res.data.fileUrl);
                 }else window.location = `/${classId}`
             })
             .catch(() => window.location = `/${classId}`)
@@ -56,7 +58,7 @@ const Material = (params) => {
     const updateClasswork = e => {
         e.preventDefault();
         const token = new Cookies().get('token');
-        Axios.post(`${URL}/classwork/update/${material._id}`, {title: inputTitle, description: inputDescription, token})
+        Axios.post(`${URL}/classwork/update/${material._id}`, {title: inputTitle, description: inputDescription, fileUrl: inputFile,token})
         .then(res => {
             setMaterial(res.data.classwork);
             const classwork = document.getElementById("classwork");
@@ -79,6 +81,7 @@ const Material = (params) => {
                 <div className="margin-top-bottom box box-shadow">
                     <h1 className="box-title">{material.title}</h1>
                     <p className="box-text material-description">{material.description}</p>
+                    {material.fileUrl? <a href={material.fileUrl}>Open File</a>: null}
                     <p>posted {moment(material.createdAt).fromNow()} 
                     {material.createdAt !== material.updatedAt? <span>(updated {moment(material.updatedAt).fromNow()})</span>: null} by {author}</p>
                     {material.author === userInfo._id? <div><h3><span className="link" onClick = {openMaterial}>Update</span></h3>
@@ -98,6 +101,10 @@ const Material = (params) => {
                             <p className="form-label">Description:</p>
                             <textarea rows="5" type = "text" className="form-control" value={inputDescription} 
                             onChange = {({target: {value}}) => setInputDescription(value)} required />
+                        </div>
+                        <div className="form-group">
+                            <p className="form-label">File Upload (optional):</p>
+                            <input type = "file" className="form-control" value={inputFile} onChange = {({target: {value}}) => setInputFile(value)} />
                         </div>
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
