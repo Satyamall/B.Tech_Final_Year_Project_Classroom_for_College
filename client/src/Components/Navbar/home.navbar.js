@@ -48,16 +48,16 @@ const HomeNavbar = () => {
     }, [userInfo])
 
     return(
-        <nav className='bg-white text-dark topnav'>
+        <nav className='bg-white text-dark topnav' >
             <div id = "sidenav" className="sidenav">
-                <span className="closebtn nav-ham" onClick={CloseNav}>&times;</span>
-                <NavLink to="/" className="sidenav-title">Classes</NavLink>
+                <span className="closebtn nav-ham" style={{color:"red"}} onClick={CloseNav}>&times;</span>
+                <NavLink to="/" className="sidenav-title" style={{fontSize:"20px",color:"white",backgroundColor:"#0096FE",margin:"10px"}}>Classes</NavLink>
                 {classes.map(_class => {
                     if(!_class.archived && !userInfo.archived_class.includes(_class._id)){
                         return <NavLink to = {`/${_class._id}`} key={_class._id} className="sidenav-item">{_class.title}</NavLink>
                     }else return null;
                 })}
-                <NavLink to = "/archived" className="sidenav-title">Archived Class</NavLink>
+                <NavLink to = "/archived" className="sidenav-title" style={{fontSize:"20px",color:"white",backgroundColor:"#0096FE",margin:"10px"}}>Archived Class</NavLink>
             </div>
             <span className="nav-logo  nav-ham" onClick = {openNav}>☰</span>
             <p className="nav-logo nav-ham" onClick = {() => window.location = "/"}>Classroom</p>

@@ -42,7 +42,7 @@ const People = (params) => {
         <div className="container-fluid">
             <ClassNavbar classInfo = {classInfo} />
             <div className="container">
-                <h1 className="box-title">Teachers:</h1>
+                <h2 className="box-title" style={{color:"teal",border:0}}>Teachers:</h2>
                 {teachers.map(teacher => {
                     if(teacher){
                         if(teacher.profile_picture){
@@ -51,14 +51,20 @@ const People = (params) => {
                                 <b>&nbsp;{teacher.username}</b> <span>({teacher.email})</span>
                                 </div>
                         }else{
-                            return <div key={teacher._id} className="box">
-                                <img src = {DefaultProfile} className="pp" alt={teacher.username} />
-                                <b>&nbsp;{teacher.username}</b> <span>({teacher.email})</span>
+                            return <div key={teacher._id} style={{}}>
+                                <div style={{display: 'flex',justifyContent: 'center',border:"1px solid grey",width:"40%",padding:"10px",borderRadius:"5px",textAlign:"center",margin:"auto"}}>
+                                    <div>
+                                    <img src = {DefaultProfile} className="pp" alt={teacher.username} />
+                                    </div>
+                                    <div style={{paddingTop:"6px"}}>
+                                    <b>&nbsp;{teacher.username}</b> <span>({teacher.email})</span>
+                                    </div>
+                                </div>
                                 </div>
                         }
                     }else return null;
                 })}
-                <h1 className="box-title">Students:</h1>
+                <h2 className="box-title" style={{color:"teal",border:0}}>Students:</h2>
                 {students.map(student => {
                     if(student){
                         if(student.profile_picture){
@@ -68,10 +74,16 @@ const People = (params) => {
                             </div>
                         }
                         else{
-                            return <div key={student._id} className="box">
-                                <img src = {DefaultProfile} className="pp" alt={student.username} />
-                                <b>&nbsp;{student.username}</b> <span>({student.email})</span>
+                            return <div key={student._id}>
+                                 <div style={{display: 'flex',justifyContent: 'center',border:"1px solid grey",width:"40%",padding:"10px",borderRadius:"5px",textAlign:"center",margin:"auto"}}>
+                                    <div>
+                                    <img src = {DefaultProfile} className="pp" alt={student.username} />
                                 </div>
+                                    <div style={{paddingTop:"6px"}}>
+                                    <b>&nbsp;{student.username}</b> <span>({student.email})</span>
+                                </div>
+                                </div>
+                                 </div>
                         }
                     }else return null;
                 })}

@@ -48,7 +48,7 @@ const Class = (params) => {
             <ClassNavbar classInfo={classInfo} />
             <div className="container">
                 <div className="margin-top-bottom box box-shadow">
-                    <h1 className="box-title">{classInfo.title}</h1>
+                    <h2 className="box-title" style={{color:"teal"}}>{classInfo.title}</h2>
                     <p className="box-text classinfo-description">{classInfo.description}</p>
                     <h4>Class code: {classInfo.code}</h4>
                 </div>

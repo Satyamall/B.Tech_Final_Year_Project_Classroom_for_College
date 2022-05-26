@@ -69,10 +69,10 @@ const ClassNavbar = ({classInfo}) => {
             </nav>
             {Object.keys(classInfo).length > 0 && classInfo.owner === userInfo._id?
                 <nav className="center bg-white text-dark topnav">
-                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}`} className=" link">Stream</NavLink></p>
-                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/classwork`} className="link">Classwork</NavLink></p>
-                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/people`} className="link">People</NavLink></p>
-                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/setting`} className ="link">Setting</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}`} className=" link" style={{color:"teal"}}>Stream</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/classwork`} className="link" style={{color:"teal"}}>Classwork</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/people`} className="link" style={{color:"teal"}}>People</NavLink></p>
+                    <p className="col-3 option nav-ham"><NavLink to = {`/${classInfo._id}/setting`} className ="link" style={{color:"teal"}}>Setting</NavLink></p>
                 </nav>
             : <nav className="center bg-white text-dark topnav">
                 <p className="col-4 nav-ham optc"><NavLink to = {`/${classInfo._id}`} className=" link">Stream</NavLink></p>

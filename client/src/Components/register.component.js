@@ -42,24 +42,24 @@ const Register = () => {
     }, [inputPassword, inputPasswordConfirmation, inputUsername])
 
     return (
-        <div className="container">
+        <div className="container container2">
             <form className="margin box box-shadow text-dark" onSubmit={Submit}>
-                <h1 className="box-title">Register user</h1>
-                <h4 className="form-error">{error}</h4>
+                <h2 className="box-title">Register user</h2>
+                <p className="form-error" style={{fontFamily: "'Roboto', sans-serif"}}>{error}</p>
                 <div className="form-group">
-                    <p className="form-label">Username:</p>
+                    <p className="form-label" style={{textAlign: 'left'}}>Username</p>
                     <input type="text" className="form-control" value={inputUsername} onChange={({target: {value}}) => setInputUsername(value)} />
                 </div>
                 <div className="form-group">
-                    <p className="form-label">Email:</p>
+                    <p className="form-label" style={{textAlign: 'left'}}>Email</p>
                     <input type="email" className="form-control" value={inputEmail} onChange = {({target: {value}}) => setInputEmail(value)} />
                 </div>
                 <div className="form-group">
-                    <p className="form-label">Password:</p>
+                    <p className="form-label" style={{textAlign: 'left'}}>Password</p>
                     <input type="password" className="form-control" value={inputPassword} onChange= {({target: {value}}) => setInputPassword(value)} />
                 </div>
                 <div className="form-group">
-                    <p className="form-label">Password Confirmation:</p>
+                    <p className="form-label" style={{textAlign: 'left'}}>Password Confirmation</p>
                     <input type="password" className="form-control" value={inputPasswordConfirmation} onChange= {({target: {value}}) => setInputPasswordConfirmation(value)} />
                 </div>
                 <div className="form-group">

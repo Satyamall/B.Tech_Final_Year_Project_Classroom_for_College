@@ -20,7 +20,8 @@
     font-weight: bold;
 }
 .pp{
-    max-width: 1.5rem;
+    /* max-width: 1.5rem; */
+    width:30px;
     border-radius: 50%;
 }
 
