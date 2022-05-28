@@ -1,20 +1,24 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+
 import ClassNavbar from "../Navbar/class.navbar";
 import moment from "moment";
 import InfoById from "../../Library/InfoById";
 import UserInfo from "../../Library/UserInfo";
 import Cookies from "universal-cookie";
+import FileBase from 'react-file-base64';
 const URL = process.env.REACT_APP_BACKEND_URL;
 
+
 const Material = (params) => {
+
     const [classInfo, setClassInfo] = useState({});
     const [material, setMaterial] = useState({});
     const [author, setAuthor] = useState('');
     const [userInfo, setUserInfo] = useState({});
     const [inputTitle, setInputTitle] = useState('');
     const [inputDescription, setInputDescription] = useState('');
-    const [inputFile, setInputFile] = useState('');
+    const [inputFile, setInputFile] = useState([]);
     const classId = params.match.params.classId;
     const materialId = params.match.params.materialId;
     
@@ -55,6 +59,9 @@ const Material = (params) => {
         classwork.style.display = "none";
     }
 
+    const handleFilechange = ({base64}) => {
+        setInputFile(base64)
+    }
     const updateClasswork = e => {
         e.preventDefault();
         const token = new Cookies().get('token');
@@ -81,7 +88,7 @@ const Material = (params) => {
                 <div className="margin-top-bottom box box-shadow">
                     <h1 className="box-title">{material.title}</h1>
                     <p className="box-text material-description">{material.description}</p>
-                    {material.fileUrl? <a href={material.fileUrl}>Open File</a>: null}
+                    {material.fileUrl? <img src={material.fileUrl} alt={material.title} width="100%"/>: null}
                     <p>posted {moment(material.createdAt).fromNow()} 
                     {material.createdAt !== material.updatedAt? <span>(updated {moment(material.updatedAt).fromNow()})</span>: null} by {author}</p>
                     {material.author === userInfo._id? <div><h3><span className="link" onClick = {openMaterial}>Update</span></h3>
@@ -103,8 +110,12 @@ const Material = (params) => {
                             onChange = {({target: {value}}) => setInputDescription(value)} required />
                         </div>
                         <div className="form-group">
-                            <p className="form-label">File Upload (optional):</p>
-                            <input type = "file" className="form-control" value={inputFile} onChange = {({target: {value}}) => setInputFile(value)} />
+                            <p className="form-label">Image Upload (optional):</p>
+                            <FileBase
+                        type="file"
+                        multiple={false}
+                        onDone={handleFilechange}
+                        />
                         </div>
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
