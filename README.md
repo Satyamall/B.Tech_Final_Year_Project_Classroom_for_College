@@ -8,29 +8,24 @@
 | Satya Prakash| Mall     |
 | Indrajeet    | Kumar    |
 
-<details><summary> <h3>Following tech stacks have been used for creation of User Interface (Front-end) of the application <h3> </summary>
-<p> 
-- [x] React
-- [x] React-redux(Thunks, ApplyMiddleware)
-- [x] Fetch
-- [x] JavaScript
-- [x] HTML
-- [x] CSS 
-</p>
-</details>
+<h3>Following tech stacks have been used for creation of User Interface (Front-end) of the application <h3> 
+- React
+- React-redux(Thunks, ApplyMiddleware)
+- Fetch
+- JavaScript
+- HTML
+- CSS 
 
-<details><summary> <h3>Following tech stacks have been used for creating server side (Back-end) of the application
-- [x] Node.js <h3> </summary>
-<p> 
-- [x] Express.js
-- [x] Axios
-- [x] JavaScript
-- [x] MongoDB atlas
-- [x] Bcrypt
-- [x] Json-web-tokens
-- [x] Random-token
-</p>
-</details>
+
+<h3>Following tech stacks have been used for creating server side (Back-end) of the application <h3> 
+- Node.js
+- Express.js
+- Axios
+- JavaScript
+- MongoDB atlas
+- Bcrypt
+- Json-web-tokens
+- Random-token
 	
 ## Features of the project
 ### This project has the following features
