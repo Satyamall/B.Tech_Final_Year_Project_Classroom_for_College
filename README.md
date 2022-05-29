@@ -9,15 +9,26 @@
 | Indrajeet    | Kumar    |
 
 <details><summary> <h2>Tech Stacks Used <h2> </summary>
-<p>
-  
-### Following tech stacks have been used 
+<p> 
+### Following tech stacks have been used for creation of User Interface (Front-end) of the application
 - [x] React
 - [x] React-redux(Thunks, ApplyMiddleware)
 - [x] Fetch
 - [x] JavaScript
 - [x] HTML
 - [x] CSS 
+</p>
+	
+<p> 
+### Following tech stacks have been used for creating server side (Back-end) of the application
+- [x] Node.js
+- [x] Express.js
+- [x] Axios
+- [x] JavaScript
+- [x] MongoDB atlas
+- [x] Bcrypt
+- [x] Json-web-tokens
+- [x] Random-token
 </p>
 </details>
 
