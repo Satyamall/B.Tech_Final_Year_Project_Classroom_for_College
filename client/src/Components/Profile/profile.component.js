@@ -59,9 +59,11 @@ const Profile = () => {
                         </label>
                     <input type = "file" id="upload-profile-picture" accept = "image/*" onChange = {ChangeProfilePicture} />
                     </div>
-                    <p className="text-label">Username: {userInfo.username}</p>
-                    <p className="text-label">Email: {userInfo.email}</p>
-                    <p className="text-label">Password: Your password</p>
+                    <div style={{ textAlign: "left", marginLeft: "200px"}}>
+                    <p className="text-label"><span style={{ fontWeight: "bold"}}>Username: </span> {userInfo.username}</p>
+                    <p className="text-label"> <span style={{ fontWeight: "bold"}}>Email: </span> {userInfo.email}</p>
+                    {/* <p className="text-label">Password: Your password</p> */}
+                    </div>
                     <h4><NavLink to="/profile/edit" className = "link">Edit Profile</NavLink></h4>
                     <h4><NavLink to="/logout" className = "link text-danger">Logout</NavLink></h4>
                 </div>
