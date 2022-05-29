@@ -54,10 +54,10 @@ const HomeNavbar = () => {
                 <NavLink to="/" className="sidenav-title" style={{fontSize:"20px",color:"white",backgroundColor:"#0096FE",margin:"10px"}}>Classes</NavLink>
                 {classes.map(_class => {
                     if(!_class.archived && !userInfo.archived_class.includes(_class._id)){
-                        return <NavLink to = {`/${_class._id}`} key={_class._id} className="sidenav-item">{_class.title}</NavLink>
+                        return <NavLink to = {`/${_class._id}`} key={_class._id} className="sidenav-item" style={{ fontSize: "16px"}}>{_class.title}</NavLink>
                     }else return null;
                 })}
-                <NavLink to = "/archived" className="sidenav-title" style={{fontSize:"20px",color:"white",backgroundColor:"#0096FE",margin:"10px"}}>Archived Class</NavLink>
+                <NavLink to = "/archived" className="sidenav-title" style={{fontSize:"16px",color:"white",backgroundColor:"#0096FE",margin:"10px"}}>Archived Class</NavLink>
             </div>
             <span className="nav-logo  nav-ham" onClick = {openNav}>☰</span>
             <p className="nav-logo nav-ham" onClick = {() => window.location = "/"}>Classroom</p>

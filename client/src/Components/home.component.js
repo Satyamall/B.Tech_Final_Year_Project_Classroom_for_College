@@ -15,7 +15,7 @@ const Home = () => {
         </div>
         <h1 style={{ textAlign: "center", margin: "50px"}}> iLearn Team : </h1>
         <div style={{display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap:"10rem", padding: "10px"}}>
-                <div style={{width: "200px"}}>
+                <div style={{width: "210px"}}>
                   <img src={Anurag_Sir} alt="Dr. Anurag Sewak" width="180px" height="180px" style={{ borderRadius: "50%"}}/>
                   <h3>  Dr. Anurag Sewak</h3>
                   <h4>Assistant Professor ( CSED )</h4>

@@ -60,14 +60,14 @@ const Class = (params) => {
                         else if(classwork.types === "long answer") window.location = `/${classInfo._id}/la/${classwork._id}`
                         else if(classwork.types === "multiple choice") window.location = `/${classInfo._id}/mc/${classwork._id}`
                         else if(classwork.types === "checkbox") window.location = `/${classInfo._id}/c/${classwork._id}`
-                        }}>
+                        }} style={{height: "150px", overflow: "hidden" , overflowY: "auto"}}>
                         <h3 className="classwork-title">
                         {authorInfo[classwork.author].profile_picture?
                         <img src = { `${URL}/${authorInfo[classwork.author].profile_picture.filename}`} alt = "Author" className="pp" />
                         :<img src = { DefaultProfile} alt = "Author" className="pp" />}
-                        &nbsp;{authorInfo[classwork.author].username} posted a new {classwork.types === "material"? <span>material</span>:<span>Assignment</span>}: 
-                        &nbsp;{classwork.title}</h3>
-                        <p>{classwork.description}</p>
+                        &nbsp;<span style={{ color: "teal"}}>{authorInfo[classwork.author].username}</span> posted a new {classwork.types === "material"? <span>material</span>:<span>Assignment</span>}: 
+                        &nbsp;<span style={{ color: "teal"}}>{classwork.title}</span></h3>
+                        <p style={{ background: "black", color: "white", textAlign: "left", padding: "20px"}}>{classwork.description}</p>
                     </div>} else return null;
                 }): null}
             </div>
