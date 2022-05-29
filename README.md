@@ -7,7 +7,7 @@
 How to run:
 
 - Clone this repository or fork it.
-  `git clone https://github.com/kimlimjustin/Classroom.git` or `git clone https://github.com/<your username>/Classroom.git`
+  `git clone https://github.com/jchy/Final_Year_Project.git`
 
 - Inside `server` folder, create a new file called `.env` which stores your `ATLAS_URI`, `SECURITY_KEY` and `CLIENT_URL` information
   - store your database URI inside `ATLAS_URI` variable
