@@ -8,9 +8,8 @@
 | Satya Prakash| Mall     |
 | Indrajeet    | Kumar    |
 
-<details><summary> <h2>Tech Stacks Used <h2> </summary>
+<details><summary> <h3>Following tech stacks have been used for creation of User Interface (Front-end) of the application <h3> </summary>
 <p> 
-### Following tech stacks have been used for creation of User Interface (Front-end) of the application
 - [x] React
 - [x] React-redux(Thunks, ApplyMiddleware)
 - [x] Fetch
@@ -18,10 +17,11 @@
 - [x] HTML
 - [x] CSS 
 </p>
-	
+</details>
+
+<details><summary> <h3>Following tech stacks have been used for creating server side (Back-end) of the application
+- [x] Node.js <h3> </summary>
 <p> 
-### Following tech stacks have been used for creating server side (Back-end) of the application
-- [x] Node.js
 - [x] Express.js
 - [x] Axios
 - [x] JavaScript
@@ -31,8 +31,7 @@
 - [x] Random-token
 </p>
 </details>
-
-
+	
 ## Features of the project
 ### This project has the following features
 - [x] User can Login 
