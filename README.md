@@ -8,7 +8,7 @@
 | Satya Prakash| Mall     |
 | Indrajeet    | Kumar    |
 
-<h3>Following tech stacks have been used for creation of User Interface (Front-end) of the application <h3> 
+### Following tech stacks have been used for creation of User Interface (Front-end) of the application 
 - React
 - React-redux(Thunks, ApplyMiddleware)
 - Fetch
@@ -17,7 +17,7 @@
 - CSS 
 
 
-<h3>Following tech stacks have been used for creating server side (Back-end) of the application <h3> 
+### Following tech stacks have been used for creating server side (Back-end) of the application
 - Node.js
 - Express.js
 - Axios
