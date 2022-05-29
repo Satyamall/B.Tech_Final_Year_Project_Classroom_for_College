@@ -1,4 +1,34 @@
-### B.Teach Final Year Project titled "iLearn" By Group 3 
+# B.Teach Final Year Project titled "iLearn" By Group 3 
+
+## List of team members
+| First Name   | Last Name|
+| -------------|----------|
+| Anamika      | Gupta    |
+| Jaswant      | Chaudhary|
+| Satya Prakash| Mall     |
+| Indrajeet    | Kumar    |
+
+<details><summary> <h2>Tech Stacks Used <h2> </summary>
+<p>
+  
+### Following tech stacks have been used 
+- [x] React
+- [x] React-redux(Thunks, ApplyMiddleware)
+- [x] Fetch
+- [x] JavaScript
+- [x] HTML
+- [x] CSS 
+</p>
+</details>
+
+
+## Features of the project
+### This project has the following features
+- [x] User can Login 
+- [x] User can Signup 
+- [x] User can Join a class
+
+## Sanpshot of the project 
 
 ### How to run:
 #### Step.1 Open your teminal in VS Code or system terminal
