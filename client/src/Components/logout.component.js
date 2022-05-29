@@ -5,6 +5,7 @@ const Logout = () => {
     useEffect(() => {
         const token = new Cookies()
         token.remove('token');
+        localStorage.clear();
         window.location = "/";
     }, [])
     return(

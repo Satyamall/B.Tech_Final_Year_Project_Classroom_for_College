@@ -5,6 +5,7 @@ import InfoById from '../../Library/InfoById';
 import UserInfo from '../../Library/UserInfo';
 import ClassNavbar from '../Navbar/class.navbar';
 import DefaultProfile from "../../Icons/profile.png";
+import FileBase from 'react-file-base64';
 const URL = process.env.REACT_APP_BACKEND_URL;
 
 Object.size = function(obj) {
@@ -34,8 +35,8 @@ const Classwork = (params) => {
     const [inputDeadline, setInputDealine] = useState('');
     const [inputChoices, setChoices] = useState([]);
     const [inputNewChoices, setInputNewChoices] = useState('');
-    const [inputFile, setInputFile] = useState('');
-
+    const [inputFile, setInputFile] = useState([]);
+   
     useEffect(() => {
         const token = new Cookies().get('token');
         UserInfo(token).then(result => {if(result) setUserInfo(result); else window.location = "/login"})
@@ -77,11 +78,14 @@ const Classwork = (params) => {
         setInputNewChoices('');
     }
 
+    const handleFilechange = ({base64}) => {
+        setInputFile(base64)
+    }
     const createClasswork = e => {
         e.preventDefault();
         Axios.post(`${URL}/classwork/create`, {
             title: inputTitle, description: inputDescription, _class: ClassInfo._id, type: inputType, 
-            author: userInfo._id, duedate: inputDeadline, token: userInfo.token, options: inputChoices, filePath: inputFile
+            author: userInfo._id, duedate: inputDeadline, token: userInfo.token, options: inputChoices, fileUrl: inputFile
         })
         .then(result => {
             if(inputType === "material") window.location = `/${ClassInfo._id}/m/${result.data.id}`
@@ -167,8 +171,12 @@ const Classwork = (params) => {
                         :null}
                         {inputType === "material" || inputType === "short answer" || inputType==='long answer'?
                         <div className="form-group">
-                            <p className="form-label">File Upload (optional):</p>
-                            <input type = "file" className="form-control" value={inputFile} onChange = {({target: {value}}) => setInputFile(value)} />
+                            <p className="form-label">Image Upload (optional):</p>
+                            <FileBase
+                        type="file"
+                        multiple={false}
+                        onDone={handleFilechange}
+                        />
                         </div>:null}
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />

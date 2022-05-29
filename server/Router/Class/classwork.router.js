@@ -6,9 +6,10 @@ const User = require('../../models/user.model');
 const Class = require('../../models/class.model');
 const Classwork = require('../../models/classwork.model');
 const {nanoid} = require('nanoid');
-// const uploadFile = require("../../middleware/multer");
+const uploadFile = require("../../middleware/multer");
 
-router.post('/create',jsonParser, (req, res) => {
+router.post('/create',uploadFile.single("fileUrl"),jsonParser, (req, res) => {
+    
     const {title, description, _class, type, author, duedate, token, options,fileUrl}  = req.body;
     User.findOne({_id: author, token}, (err, user) => {
         if(err) res.status(500).json("Something went wrong.")
@@ -51,7 +52,7 @@ router.get('/get/:classwork', jsonParser, (req, res) => {
     .catch(() => res.status(404).json("Classwork not found."))
 })
 
-router.post('/update/:id',jsonParser, (req, res) => {
+router.post('/update/:id',uploadFile.single("fileUrl"),jsonParser, (req, res) => {
     const {title, description, duedate, type, options,token,fileUrl}  = req.body;
     const id = req.params.id;
     Classwork.findById(id, (err, classwork) => {

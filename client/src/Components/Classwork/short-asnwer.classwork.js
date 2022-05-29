@@ -5,6 +5,7 @@ import moment from "moment";
 import InfoById from "../../Library/InfoById";
 import UserInfo from "../../Library/UserInfo";
 import Cookies from "universal-cookie";
+import FileBase from 'react-file-base64';
 const URL = process.env.REACT_APP_BACKEND_URL;
 
 const ShortAnswer = (params) => {
@@ -17,9 +18,8 @@ const ShortAnswer = (params) => {
     const [inputDeadline, setInputDeadline] = useState('');
     const [inputFile, setInputFile] = useState('');
     const [author, setAuthor] = useState('');
-    const [inputAnswer, setInputAnswer] = useState('');
+    const [answer, setAnswer] = useState({text:"", file:""});
     const [answers, setAnswers] = useState([]);
-    const [answerFile, setAnswerFile] = useState("");
     const classId = params.match.params.classId;
     const classworkId = params.match.params.classworkId;
     const classworkModal = document.getElementById("classwork");
@@ -77,6 +77,10 @@ const ShortAnswer = (params) => {
 
     const closeClasswork = () => classworkModal.style.display = "none";
 
+    const handleFilechange = ({base64}) => {
+        setInputFile(base64)
+    }
+
     const deleteClasswork = () => {
         if(window.confirm("Are you sure?")){
             const token = new Cookies().get('token');
@@ -95,11 +99,15 @@ const ShortAnswer = (params) => {
         })
     }
 
+    const handleanswersFilechange =({base64})=>{
+        setAnswer({...answer, file: base64});
+    }
+
     const Answer = e => {
         e.preventDefault();
         const token = new Cookies().get('token');
         if(!answered){
-            Axios.post(`${URL}/classwork/submit/answer`, {token, classwork: classwork._id, answer: inputAnswer, answerFile: answerFile,student: userInfo._id})
+            Axios.post(`${URL}/classwork/submit/answer`, {token, classwork: classwork._id, answer: answer,student: userInfo._id})
             .then(res => setAnswers(res.data.answers))
         }
     }
@@ -115,7 +123,7 @@ const ShortAnswer = (params) => {
                     <h1 className="box-title">{classwork.title}</h1>
                     {classwork.duedate?<p>Due: {moment(classwork.duedate).fromNow()}</p>:null}
                     <p className="box-text material-description">{classwork.description}</p>
-                    {classwork.fileUrl? <a href={classwork.fileUrl}>Open File</a>: null}
+                    {classwork.fileUrl? <img src={classwork.fileUrl} alt={classwork.title} width="100%"/>: null}
                     <p>posted {moment(classwork.createdAt).fromNow()} 
                     {classwork.createdAt !== classwork.updatedAt? <span>(updated {moment(classwork.updatedAt).fromNow()})</span>: null} by {author}</p>
                     {classwork.author === userInfo._id? <div><h3><span className="link" onClick = {openClasswork}>Edit</span></h3>
@@ -127,11 +135,15 @@ const ShortAnswer = (params) => {
                     <form className="box box-shadow" onSubmit = {Answer}>
                         <h1 className="box-title">Your answer:</h1>
                         <div className="form-group">
-                            <input type = "text" className="form-control" value={inputAnswer} onChange = {({target: {value}}) => setInputAnswer(value)} />
+                            <input type = "text" className="form-control" value={answer.text} onChange = {({target: {value}}) => setAnswer({...answer, text: value})} />
                         </div>
                         <div className="form-group">
                             <p className="form-label">File Upload (optional):</p>
-                            <input type = "file" className="form-control" value={answerFile} onChange = {({target: {value}}) => setAnswerFile(value)} />
+                            <FileBase
+                        type="file"
+                        multiple={false}
+                        onDone={handleanswersFilechange}
+                        />
                         </div>
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
@@ -171,7 +183,11 @@ const ShortAnswer = (params) => {
                         </div>
                         <div className="form-group">
                             <p className="form-label">File Upload (optional):</p>
-                            <input type = "file" className="form-control" value={inputFile} onChange = {({target: {value}}) => setInputFile(value)} />
+                            <FileBase
+                        type="file"
+                        multiple={false}
+                        onDone={handleFilechange}
+                        />
                         </div>
                         <div className="form-group">
                             <input type = "submit" className="form-control btn btn-dark" />
@@ -184,9 +200,19 @@ const ShortAnswer = (params) => {
                 <div className="classwork-content container">
                     <span className="classwork-close" onClick = {closeAnswer}>&times;</span>
                     <h1 className="box-title">Answers by students:</h1>
-                    {answers.map(answer => {
-                        return <p key = {answer._id}>{answer.student.username} answered <b>{answer.answer}</b> {answer.answerFile ? <a href={answer.answerFile}>Open File</a>: null}  {moment(answer.answeredOn).fromNow()}
-                        {answer.answeredOn > classwork.duedate? <span><b> (Turned in late)</b></span>:null}</p>
+                    {answers.map((answer,index) => {
+                        return <div key = {answer._id}>
+                            <h3>{index+1} - {answer.student.username} answered </h3> 
+                            <p>{answer.answer.text}</p> 
+                            <div>
+                              {answer.answer.file ? <img src={answer.answer.file} alt="" width="60%"/>: null}  
+                            </div>
+                            <br />
+                            <div>
+                              {moment(answer.answeredOn).fromNow()}
+                              {answer.answeredOn > classwork.duedate? <span><b> (Turned in late)</b></span>:null}
+                            </div>
+                        </div>
                     })}
                 </div>
             </div>

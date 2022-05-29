@@ -109,7 +109,7 @@ const ClassSetting = (params) => {
             <ClassNavbar classInfo = {classInfo} />
             <div className="container">
                 <form className="margin-top-bottom box box-shadow" onSubmit = {updateClassInfo}>
-                    <h1 className="box-title">Update Class Information:</h1>
+                    <h2 className="box-title" style={{color:"teal"}}>Update Class Information:</h2>
                     <p className="text-success">{updateInfo}</p>
                     <div className="form-group">
                         <p className="form-label">Title:</p>
@@ -124,7 +124,7 @@ const ClassSetting = (params) => {
                     </div>
                 </form>
                 <div className="margin-top-bottom box box-shadow">
-                    <h1 className="box-title">Teachers:</h1>
+                    <h2 className="box-title" style={{color:"teal"}}>Teachers:</h2>
                     <ul>
                         {teachers.length > 0?
                         teachers.map(teacher => {
@@ -134,11 +134,11 @@ const ClassSetting = (params) => {
                                 <li><p className="link" onClick = {() => removeTeacher(teacher._id)}>Remove</p></li>
                             </ul></li>
                         })
-                        :<h3>There is no teacher yet.</h3>}
+                        :<h4>There is no teacher yet.</h4>}
                     </ul>
                 </div>
                 <div className="margin-top-bottom box box-shadow">
-                    <h1 className="box-title">Students:</h1>
+                    <h2 className="box-title" style={{color:"teal"}}>Students:</h2>
                     <ul>
                         {students.length > 0?
                         students.map(student => {
@@ -148,11 +148,11 @@ const ClassSetting = (params) => {
                                 <li><p className = "link" onClick = {() => removeStudent(student._id)}>Remove</p></li>    
                             </ul></li>
                         })
-                        :<h3>There is no students yet. Send class code({classInfo.code}) to your student.</h3>}
+                        :<h4>There is no students yet. Send class code({classInfo.code}) to your student.</h4>}
                     </ul>
                 </div>
                 <form className="margin-top-bottom box box-shadow" onSubmit = {ArchiveClass}>
-                    <h1 className="box-title">Archive Class</h1>
+                    <h2 className="box-title"  style={{color:"teal"}}>Archive Class</h2>
                     <div className="form-group">
                         <input type = "submit" className="form-control btn btn-dark" value="Archive" />
                     </div>
