@@ -1,42 +1,17 @@
-# Classroom
+### B.Teach Final Year Project titled "iLearn" By Group 3 
 
-![Classroom demo](https://drive.google.com/uc?esport=view&id=14Iu2VRcHoCKUCUkF0iMCuyjcj9_TZ90a)
-
-#### Warning: although this project has some basics security such as hashed user password and others, this project is NOT secure enough in production. (Contribute to this project by making a pull request will be appreciated)
-
-How to run:
-
-- Clone this repository or fork it.
-  `git clone https://github.com/jchy/Final_Year_Project.git`
-
-- Inside `server` folder, create a new file called `.env` which stores your `ATLAS_URI`, `SECURITY_KEY` and `CLIENT_URL` information
-  - store your database URI inside `ATLAS_URI` variable
-  - store your security key inside `SECURITY_KEY` variable
-  - store your client url inside `CLIENT_URL` variable
-  - example:
-  ```
-  ATLAS_URI =mongodb+srv://admin:<password>@cluster0.8aezk.gcp.mongodb.net/classroom?retryWrites=true&w=majority
-  SECURITY_KEY = D73373D9B4ED6FEC5B8B2DAF6WA929B1C7D14CDC88B196EBDCCEA77AFF7BB9
-  CLIENT_URL = http://localhost:3000/
-  ```
-- Inside `client` folder, create a new file called `.env` which stores your `REACT_APP_SECURITY_KEY` and `REACT_APP_BACKEND_URL` informations
-
-  - store your security key inside `REACT_APP_SECURITY_KEY` variable, note that this value must same as `SECURITY_KEY` in `server/.env` file
-  - store your server url inside `REACT_APP_BACKEND_URL` variable
-  - example:
-
-  ```
-  REACT_APP_SECURITY_KEY = D73373D9B4ED6FEC5B8B2DAF6WA929B1C7D14CDC88B196EBDCCEA77AFF7BB9
-  REACT_APP_BACKEND_URL = http://localhost:5000
-  ```
-
-- install all dependencies.
-  - Client side:
-    on the `client` directory type `npm install`
-  - Server side:
-    on the `server` directory type `npm install`
-- Run it on node js:
-  - Client side:
-    on the `client` directory type `npm start`
-  - Server side:
-    on the `server` directory type `npm start`
+### How to run:
+Step.1 Open your teminal in VS Code or system terminal
+Step.2 Go to the following GitHub repository and clone the repo into your system using the following command into the terminal of your system: 
+	Git clone https://github.com/jchy/Final_Year_Project.git 
+Step. 3 Navigate inside the client directory of the cloned folder using the following commands:
+	cd client
+Step. 4 Install the required packages and modules using the following command:
+	npm install
+Step.5 To run the client side (front-end) of the project run the following command into your terminal 
+	npm run start
+Step.6 Now navigate inside the backend directory of the project from the client directory using following commands:
+	cd ..
+	cd backend
+Step.7 To start the backend server type the following command into your terminal 
+	npm run start
